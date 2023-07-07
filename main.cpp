@@ -13,7 +13,7 @@ bool IniciaCnf(char* retIP, char* retPorta, char* entIP, char* entPorta) {
     }
 
     if (RegSetValueEx(hKey, "ProxyServer", 0, REG_SZ, (const BYTE*)entIP, strlen(entIP) + 1) != ERROR_SUCCESS) {
-        MessageBox(NULL, "Erro ao configurar o endereÁo IP de entrada.", "Erro", MB_ICONERROR);
+        MessageBox(NULL, "Erro ao configurar o endere√ßo IP de entrada.", "Erro", MB_ICONERROR);
         RegCloseKey(hKey);
         return false;
     }
@@ -25,7 +25,7 @@ bool IniciaCnf(char* retIP, char* retPorta, char* entIP, char* entPorta) {
     }
 
     if (RegSetValueEx(hKey, "ProxyEnable", 0, dwType, (const BYTE*)&dwValue, dwSize) != ERROR_SUCCESS) {
-        MessageBox(NULL, "Erro ao configurar a opÁ„o de habilitar o proxy.", "Erro", MB_ICONERROR);
+        MessageBox(NULL, "Erro ao configurar a op√ß√£o de habilitar o proxy.", "Erro", MB_ICONERROR);
         RegCloseKey(hKey);
         return false;
     }
@@ -50,7 +50,7 @@ bool RetornaCnf(char* entIP, char* entPorta) {
     }
 
     if (RegGetValue(hKey, NULL, "ProxyServer", RRF_RT_REG_SZ, NULL, proxyServer, &bufferSize) != ERROR_SUCCESS) {
-        MessageBox(NULL, "Erro ao obter o endereÁo IP de retorno.", "Erro", MB_ICONERROR);
+        MessageBox(NULL, "Erro ao obter o endere√ßo IP de retorno.", "Erro", MB_ICONERROR);
         RegCloseKey(hKey);
         return false;
     }
@@ -70,17 +70,61 @@ bool RetornaCnf(char* entIP, char* entPorta) {
     return true;
 }
 
-int main() {
-    char retIP[256];
-    char retPorta[256];
-    char entIP[] = "192.168.1.100";
-    char entPorta[] = "8080";
+// Fun√ß√£o de tratamento de mensagens da janela
+LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+    switch (uMsg)
+    {
+        case WM_CREATE:
+        {
+            char retIP[256];
+            char retPorta[256];
+            char entIP[] = "192.168.1.100";
+            char entPorta[] = "8080";
 
-    if (IniciaCnf(retIP, retPorta, entIP, entPorta)) {
-        MessageBox(NULL, "ConfiguraÁıes de proxy do Windows alteradas com sucesso.", "Sucesso", MB_ICONINFORMATION);
-    } else {
-        MessageBox(NULL, "Erro ao alterar as configuraÁıes de proxy do Windows.", "Erro", MB_ICONERROR);
+            if (IniciaCnf(retIP, retPorta, entIP, entPorta)) {
+                // Opera√ß√£o de proxy bem-sucedida
+            } else {
+                // Erro ao alterar as configura√ß√µes de proxy
+            }
+
+            // Feche a janela ap√≥s o processamento
+            PostQuitMessage(0);
+            break;
+        }
+        case WM_DESTROY:
+        {
+            PostQuitMessage(0);
+            break;
+        }
+        default:
+            return DefWindowProc(hwnd, uMsg, wParam, lParam);
+    }
+    return 0;
+}
+
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+{
+    // Registre a classe da janela
+    WNDCLASS wc = {};
+    wc.lpfnWndProc = WindowProc;
+    wc.hInstance = hInstance;
+    wc.lpszClassName = "ProxyWindow";
+    RegisterClass(&wc);
+
+    // Crie a janela
+    HWND hwnd = CreateWindowEx(0, "ProxyWindow", "Altera√ß√£o de Proxy", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 400, 200, NULL, NULL, hInstance, NULL);
+
+    // Exiba a janela
+    ShowWindow(hwnd, nCmdShow);
+
+    // Loop de mensagens
+    MSG msg;
+    while (GetMessage(&msg, NULL, 0, 0))
+    {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
     }
 
-    return 0;
+    return static_cast<int>(msg.wParam);
 }
