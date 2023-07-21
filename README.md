@@ -1,13 +1,13 @@
 # Proxy (pt-br)
   Alterando o proxy pelos registros do Windows utilizando a windowsAPI.
 
-#🔨Compilando
+# 🔨Compilando
   -Estou utilizando o Code Blocks mas você pode fazer por outra IDE.
   -Abra o projeto na IDE (main.cpp)
   -Compile o script (no caso do Code Blocks pressione o atalho F9)
   -Após compilar entre no diretório do seu projeto e abra o arquivo .exe que foi gerado
 
-#🤓Testando
+# 🤓Testando
   -Vamos utilizar dois comandos no CMD para verificar o valor das chaves ProxyServer e ProxyPort
   -Digite os codigos no cmd e pressione ENTER:
   
