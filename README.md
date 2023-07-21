@@ -11,8 +11,9 @@
   -Vamos utilizar dois comandos no CMD para verificar o valor das chaves ProxyServer e ProxyPort
   -Digite os codigos no cmd e pressione ENTER:
   
-    1: reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyServer
-    2: reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyPort
+    reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyServer
+    
+    reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyPort
     
   -Os comandos irão retornar uma mensagem como essa(os asteriscos serão o valor proxy do script): 
   
