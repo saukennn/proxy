@@ -33,8 +33,8 @@
   -Let's use two commands in CMD to check value of ProxyServer and ProxyPort keys
   -Type the codes in cmd and press ENTER:
   
-    1: reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyServer
-    2: reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyPort
+     reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyServer
+     reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyPort
     
   -The commands will return a message like this (the asterisks will be the proxy value of the script):
   
