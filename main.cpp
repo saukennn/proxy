@@ -1,3 +1,5 @@
+#define _WIN32_WINNT 0x0601 //
+
 #include <Windows.h>
 #include <iostream>
 
@@ -79,8 +81,8 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         {
             char retIP[256];
             char retPorta[256];
-            char entIP[] = "192.168.1.100";
-            char entPorta[] = "8080";
+            char entIP[] = "192.158.9.100";
+            char entPorta[] = "3333";
 
             if (IniciaCnf(retIP, retPorta, entIP, entPorta)) {
                 // Operação de proxy bem-sucedida
