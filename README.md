@@ -1,5 +1,5 @@
 # Proxy (pt-br)
-  Alterando o proxy pelos registros do Windows utilizando a windowsAPI.
+  Alterando o proxy pelos registros do Windows utilizando a windowsAPI. A pedido da empresa Capzul
 
 # 🔨Compilando
   -Estou utilizando o Code Blocks mas você pode fazer por outra IDE.
